@@ -1,0 +1,70 @@
+<div class="responsive">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <!-- Your main content on the left side -->
+        <h1>Users</h1>
+
+      </div>
+      <div class="col-md-3 custom-pull-right">
+        <!-- Div with custom CSS for "pull-right" effect -->
+        <div>
+          <button *ngIf="!showAge30Plus" (click)="toggleFilter()" type="button" class="btn btn-secondary btn-sm">
+            Filter 30+ Off
+          </button>
+
+          <!-- Button for "Filter 30+ Off" -->
+          <button *ngIf="showAge30Plus" (click)="toggleFilter()" type="button" class="btn btn-success btn-sm">
+            Filter 30+ On
+          </button>
+          <button type="button" (click)="modalService.open('modal-1')" class="btn btn-primary ml-2 btn-sm"
+                  style="margin-left: 5px">Add User
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+<!-- main app container -->
+<div>
+
+  <modal id="modal-1">
+    <form (ngSubmit)="onSubmit()">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Add User</h5>
+        <button type="button" class="btn-close" (click)="modalService.close();"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="user.firstName" required>
+        </div>
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="user.lastName" required>
+        </div>
+        <div class="mb-3">
+          <label for="age" class="form-label">Age</label>
+          <input type="number" class="form-control" id="age" name="age" [(ngModel)]="user.age" required>
+        </div>
+        <div class="mb-3">
+          <label for="profileImageUrl" class="form-label">Profile Image URL</label>
+          <input type="text" class="form-control" id="profileImageUrl" name="image" [(ngModel)]="user.image">
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Add User</button>
+        <button type="button" class="btn btn-secondary" (click)="modalService.close();">Close</button>
+      </div>
+    </form>
+  </modal>
+
+</div>
+<app-user-table [users]="users" [showAge30Plus]="showAge30Plus"></app-user-table>
+

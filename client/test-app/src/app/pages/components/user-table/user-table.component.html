@@ -1,0 +1,33 @@
+
+<div class="responsive">
+  <table id="example" class="table table-sm bg-success text-light rounded-3 table-borderless" >
+    <thead class="header">
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Age</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of getFilteredUsers()">
+      <td><img width="30" height="30" [src]="user.image"></td>
+      <td>{{ user.firstName+' '+user.lastName }}</td>
+      <td>{{ user.city }}</td>
+      <td>{{getStateFullName(user.state) }}</td>
+      <td>
+        <div *ngIf="user.age >= 30">
+          <span class="btn btn-warning btn-sm">{{ user.age }}</span>
+          <!-- Additional content for users aged 30 or older -->
+        </div>
+        <div *ngIf="user.age < 30">
+          <span class="btn btn-success btn-sm">{{ user.age }}</span>
+          <!-- Additional content for users younger than 30 -->
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
